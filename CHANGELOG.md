@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.2.1 — 2026-07-20
+
+- Keep a verified token only in setup-server memory while polling Telegram every 2.5 seconds for `/start`.
+- Add in-page chat selection for multiple chats and stricter localhost request validation.
+
 ## 0.2.0 — 2026-07-20
 
 - Add a localhost-only browser setup wizard that keeps the Telegram token out of Codex chat.

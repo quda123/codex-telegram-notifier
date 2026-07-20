@@ -1,6 +1,6 @@
 {
   "name": "codex-telegram-notifier",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "Local Telegram notifications for Codex task stops.",
   "author": {"name": "quda123", "url": "https://github.com/quda123"},
   "homepage": "https://github.com/quda123/codex-telegram-notifier",
