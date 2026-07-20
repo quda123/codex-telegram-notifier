@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.3.0 — 2026-07-20
+
+- Replace plugin runtime and hooks with dependency-free Node.js to fix Windows Python launcher failures.
+
 ## 0.2.3 — 2026-07-20
 
 - Stop setup-page polling and return to the safe status page when test delivery fails or setup expires.

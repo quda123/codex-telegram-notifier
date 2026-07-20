@@ -1,6 +1,6 @@
 {
   "description": "Send a local Telegram notification when Codex stops.",
   "hooks": {
-    "Stop": [{"hooks": [{"type": "command", "command": "python3 \"$PLUGIN_ROOT/scripts/codex_telegram_notifier.py\"", "commandWindows": "py -3 \"%PLUGIN_ROOT%\\scripts\\codex_telegram_notifier.py\"", "timeout": 15, "statusMessage": "Sending Telegram notification"}]}]
+    "Stop": [{"hooks": [{"type": "command", "command": "node \"$PLUGIN_ROOT/scripts/codex_telegram_notifier.js\"", "commandWindows": "node \"%PLUGIN_ROOT%\\scripts\\codex_telegram_notifier.js\"", "timeout": 15, "statusMessage": "Sending Telegram notification"}]}]
   }
 }
