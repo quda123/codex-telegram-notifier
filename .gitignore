@@ -1,0 +1,12 @@
+.env
+*.token
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.venv/
+dist/
+build/
+*.egg-info/
+.codex-telegram-notifier/
+codex-telegram-notifier.log
+

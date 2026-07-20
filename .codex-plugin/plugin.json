@@ -1,0 +1,22 @@
+{
+  "name": "codex-telegram-notifier",
+  "version": "0.1.0",
+  "description": "Local Telegram notifications for Codex task stops.",
+  "author": {"name": "quda123", "url": "https://github.com/quda123"},
+  "homepage": "https://github.com/quda123/codex-telegram-notifier",
+  "repository": "https://github.com/quda123/codex-telegram-notifier",
+  "license": "MIT",
+  "keywords": ["codex", "telegram", "notifications"],
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "Codex Telegram Notifier",
+    "shortDescription": "Private local Telegram notifications for Codex.",
+    "longDescription": "Sends a private Telegram notification when a Codex task stops.",
+    "developerName": "quda123",
+    "category": "Productivity",
+    "capabilities": ["Interactive"],
+    "websiteURL": "https://github.com/quda123/codex-telegram-notifier",
+    "brandColor": "#229ED9",
+    "defaultPrompt": ["Set up Telegram notifications for Codex.", "Test my Codex Telegram notification."]
+  }
+}
