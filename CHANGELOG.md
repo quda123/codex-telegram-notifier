@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.2.2 — 2026-07-20
+
+- Fix setup polling loop with explicit setup states and automatic completion for one chat.
+
 ## 0.2.1 — 2026-07-20
 
 - Keep a verified token only in setup-server memory while polling Telegram every 2.5 seconds for `/start`.
