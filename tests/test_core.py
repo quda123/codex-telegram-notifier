@@ -24,5 +24,10 @@ class CoreTests(unittest.TestCase):
         with patch("subprocess.run") as run:
             run.side_effect = [type("X", (), {"stdout":"main\n"})(), type("X", (), {"stdout":"git@github.com:a/b.git\n"})()]
             self.assertEqual(git_info("."), ("b", "main", "https://github.com/a/b"))
+    def test_discover_chats_and_no_updates(self):
+        from codex_telegram_notifier.core import discover_chats
+        with patch("codex_telegram_notifier.core.telegram", return_value=[]): self.assertEqual(discover_chats("secret"), [])
+        updates = [{"message": {"chat": {"id": 1, "first_name": "A", "type": "private"}}}, {"message": {"chat": {"id": 2, "title": "Team", "type": "group"}}}]
+        with patch("codex_telegram_notifier.core.telegram", return_value=updates): self.assertEqual(len(discover_chats("secret")), 2)
 
 if __name__ == "__main__": unittest.main()

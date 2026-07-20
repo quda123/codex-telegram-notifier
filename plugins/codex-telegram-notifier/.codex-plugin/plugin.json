@@ -1,6 +1,6 @@
 {
   "name": "codex-telegram-notifier",
-  "version": "0.1.1",
+  "version": "0.2.0",
   "description": "Local Telegram notifications for Codex task stops.",
   "author": {"name": "quda123", "url": "https://github.com/quda123"},
   "homepage": "https://github.com/quda123/codex-telegram-notifier",
@@ -17,6 +17,6 @@
     "capabilities": ["Interactive"],
     "websiteURL": "https://github.com/quda123/codex-telegram-notifier",
     "brandColor": "#229ED9",
-    "defaultPrompt": ["Set up Telegram notifications for Codex.", "Test my Codex Telegram notification."]
+    "defaultPrompt": ["Настроить Telegram-уведомления", "Проверить подключение Telegram", "Отправить тестовое уведомление"]
   }
 }

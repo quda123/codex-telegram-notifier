@@ -31,10 +31,18 @@ codex
 
 ## Настройка Telegram
 
-1. Откройте `@BotFather`, выполните `/newbot` и сохраните полученный токен.
-2. Напишите боту любое сообщение.
-3. Откройте `https://api.telegram.org/bot<TOKEN>/getUpdates` и возьмите `message.chat.id` (не публикуйте эту ссылку).
-4. В корне плагина запустите:
+1. Установите плагин и начните новый сеанс Codex.
+2. Выберите **Настроить Telegram-уведомления** или напишите `@telegram-notifier-setup`.
+3. Codex откроет одноразовую локальную страницу настройки.
+4. В Telegram создайте бота через `@BotFather` → `/newbot`.
+5. Вставьте токен только в локальное окно, затем отправьте боту `/start`.
+6. Мастер сам найдёт единственный `chat_id`, сохранит настройки и пришлёт тестовое сообщение.
+
+Токен не вводится в чат Codex, не входит в URL и не выводится в логи. При нескольких чатах используйте резервную CLI-настройку.
+
+## Ручная настройка
+
+В корне плагина запустите:
 
 ```text
 python scripts/codex_telegram_notifier.py setup
@@ -43,7 +51,7 @@ python scripts/codex_telegram_notifier.py status
 python scripts/codex_telegram_notifier.py remove
 ```
 
-`setup` сохраняет токен только в `%APPDATA%\\codex-telegram-notifier\\config.json` на Windows либо `~/.config/codex-telegram-notifier/config.json` на macOS/Linux. На Unix файлу задаются права `0600`.
+`setup` запрашивает токен скрыто, сам ищет единственный chat_id и сохраняет настройки только в `%APPDATA%\\codex-telegram-notifier\\config.json` на Windows либо `~/.config/codex-telegram-notifier/config.json` на macOS/Linux. На Unix файлу задаются права `0600`.
 
 ## Обновление и удаление
 

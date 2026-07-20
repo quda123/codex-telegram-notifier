@@ -19,6 +19,8 @@ LOG = logging.getLogger("codex_telegram_notifier")
 class Config:
     bot_token: str
     chat_id: str
+    bot_username: str = ""
+    configured_at: str = ""
 
 def data_dir() -> Path:
     """Return the per-user configuration directory without hard-coded paths."""
@@ -39,7 +41,7 @@ def load_config() -> Config | None:
     try:
         raw = json.loads(config_path().read_text(encoding="utf-8"))
         token, chat_id = raw.get("bot_token", ""), str(raw.get("chat_id", ""))
-        return Config(token, chat_id) if token and chat_id else None
+        return Config(token, chat_id, str(raw.get("bot_username", "")), str(raw.get("configured_at", ""))) if token and chat_id else None
     except (OSError, ValueError, TypeError):
         return None
 
@@ -79,3 +81,21 @@ def send_message(config: Config, message: str, timeout: float = 8) -> tuple[bool
     except (urllib.error.URLError, TimeoutError, OSError):
         LOG.warning("Telegram notification failed (network or credentials)")
         return False, "network or credentials error"
+
+def telegram(token: str, method: str, payload: dict | None = None, timeout: float = 8) -> dict | None:
+    """Call Telegram once without ever logging its token or URL."""
+    request = urllib.request.Request(f"https://api.telegram.org/bot{token}/{method}", json.dumps(payload or {}).encode(), {"Content-Type": "application/json"})
+    try:
+        with urllib.request.urlopen(request, timeout=timeout) as response:
+            data = json.loads(response.read().decode("utf-8")); return data.get("result") if data.get("ok") else None
+    except (urllib.error.URLError, TimeoutError, OSError, ValueError):
+        LOG.warning("Telegram setup request failed")
+        return None
+
+def discover_chats(token: str) -> list[dict]:
+    """Return unique chats that have sent this bot an update."""
+    updates = telegram(token, "getUpdates") or []; found: dict[str, dict] = {}
+    for update in updates:
+        message = update.get("message") or update.get("channel_post") or {}; chat = message.get("chat") or {}
+        if chat.get("id") is not None: found[str(chat["id"])] = {"id": str(chat["id"]), "name": chat.get("title") or chat.get("username") or chat.get("first_name") or "Telegram chat", "type": chat.get("type", "private")}
+    return list(found.values())
