@@ -17,9 +17,17 @@ Codex Desktop или Codex CLI с поддержкой Plugins/Hooks, Python 3.1
 
 ## Установка в Codex
 
-В текущей версии Codex публичный GitHub marketplace подключается через интерфейс **Plugins** (или `/plugins` в Codex CLI): добавьте marketplace этого репозитория, установите `Codex Telegram Notifier`, затем начните новый чат и подтвердите hook в `/hooks`.
+В Codex CLI добавьте именно этот публичный GitHub marketplace, затем откройте браузер плагинов и установите запись из него:
 
-> Репозиторий содержит плагин в корне. После публикации добавьте его как repo marketplace в Plugins; Codex не поддерживает выдуманные «однострочные» команды установки для GitHub.
+```text
+codex plugin marketplace add quda123/codex-telegram-notifier --ref main
+codex
+/plugins
+```
+
+В `/plugins` выберите marketplace **quda123 Codex Plugins**, установите **Codex Telegram Notifier**, начните новый сеанс и введите `/hooks`, чтобы просмотреть и подтвердить hook. В ChatGPT Desktop/Codex добавьте этот GitHub marketplace в **Plugins**, выберите его, установите плагин, затем начните новый чат и подтвердите hook в интерфейсе Plugins/Hooks.
+
+Для обновления используйте `codex plugin marketplace upgrade quda123-codex-plugins`, затем переустановите плагин через `/plugins` и начните новый сеанс.
 
 ## Настройка Telegram
 
@@ -52,8 +60,9 @@ python scripts/codex_telegram_notifier.py remove
 ## Разработка
 
 ```text
+set PYTHONPATH=plugins/codex-telegram-notifier/src
 python -m unittest discover -s tests
-python -m compileall src scripts
+python -m compileall plugins/codex-telegram-notifier/src plugins/codex-telegram-notifier/scripts
 ```
 
 См. [README_EN.md](README_EN.md), [SECURITY.md](SECURITY.md) и [CONTRIBUTING.md](CONTRIBUTING.md).

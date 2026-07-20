@@ -1,0 +1,20 @@
+{
+  "name": "quda123-codex-plugins",
+  "interface": {
+    "displayName": "quda123 Codex Plugins"
+  },
+  "plugins": [
+    {
+      "name": "codex-telegram-notifier",
+      "source": {
+        "source": "local",
+        "path": "./plugins/codex-telegram-notifier"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      },
+      "category": "Productivity"
+    }
+  ]
+}
