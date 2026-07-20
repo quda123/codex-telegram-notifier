@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.2.3 — 2026-07-20
+
+- Stop setup-page polling and return to the safe status page when test delivery fails or setup expires.
+
 ## 0.2.2 — 2026-07-20
 
 - Fix setup polling loop with explicit setup states and automatic completion for one chat.

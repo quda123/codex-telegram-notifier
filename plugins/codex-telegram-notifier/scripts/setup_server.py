@@ -40,7 +40,7 @@ def serve(lifetime: int = 120) -> None:
                 self.page(f'<p>Выберите чат:</p><form method="post"><input type="hidden" name="setup" value="{state["key"]}">{rows}</form>'); return
             if state["phase"]==State.EXPIRED: self.page("<p>Время настройки истекло. Запустите настройку ещё раз.</p>"); return
             if state["phase"]==State.ERROR: self.page(f'<p>{html.escape(state["error"])}</p>'); return
-            if state["phase"]==State.WAITING_FOR_CHAT: self.page('<p>Теперь откройте Telegram и отправьте вашему боту <b>/start</b>.</p><script>setInterval(async()=>{let d=await(await fetch("/poll")).json();if(d.redirect)location=d.redirect;if(d.status=="expired")location="/"},2500)</script>'); return
+            if state["phase"]==State.WAITING_FOR_CHAT: self.page('<p>Теперь откройте Telegram и отправьте вашему боту <b>/start</b>.</p><script>const poll=setInterval(async()=>{let d=await(await fetch("/poll")).json();if(d.redirect||d.status==="error"||d.status==="expired"){clearInterval(poll);location=d.redirect||"/"}},2500)</script>'); return
             self.page(f'<form method="post" autocomplete="off"><input type="hidden" name="setup" value="{state["key"]}"><label>Telegram Bot Token <input type="password" name="token" required autocomplete="new-password"></label><button>Проверить</button></form>')
         def do_POST(self)->None:
             if not self.local() or self.headers.get("Origin")!=f"http://127.0.0.1:{self.server.server_port}": self.send_error(403); return
